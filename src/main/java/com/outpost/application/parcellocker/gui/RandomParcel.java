@@ -14,7 +14,7 @@ import java.util.Random;
 
 @Route("RandomParcel")
 public class RandomParcel extends VerticalLayout {
-
+    int h = 1;
     public RandomParcel(ParcelLockerList parcelLockerList) {
 
         Button menu = new Button("Menu");
@@ -30,14 +30,17 @@ public class RandomParcel extends VerticalLayout {
         String[] street = {"Długa", "Krótka", "Czechowa", "Jan Pawła II", "Warszawska", "Poniatowskiego", "Cmentarna", "Alpejska"};
         String[] zipcode = {"01-000", "23-435", "65-234", "43-654", "64-112", "97-452"};
 
+
+
         RandomParcel.addClickListener(clickEvent -> {
             Random rand = new Random();
             int n = rand.nextInt(6);
             int m = rand.nextInt(8);
             int o = rand.nextInt(100);
+
                     ParcelLocker parcelLocker1 = new ParcelLocker();
-                    parcelLocker1.setID(n + m + " ");
-                    parcelLocker1.setName("Testowy" + o);
+                    parcelLocker1.setID("XYZ00" + h++);
+                    parcelLocker1.setName(city[n] + "testowy");
                     parcelLocker1.setStreet(street[m]);
                     parcelLocker1.setCity(city[n]);
                     parcelLocker1.setZipcode(zipcode[n]);

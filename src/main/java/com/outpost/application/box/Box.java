@@ -5,7 +5,7 @@ import com.outpost.application.parcellocker.ParcelLocker;
 public class Box {
 
     private String id;
-    private String size;
+    private BoxSize size;
     private String weight;
     private String recipient;
     private String sender;
@@ -21,11 +21,11 @@ public class Box {
         this.id = id;
     }
 
-    public String getSize() {
+    public BoxSize getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(BoxSize size) {
         this.size = size;
     }
 
