@@ -76,6 +76,7 @@ public class AddBox extends VerticalLayout {
         add(new H3("Parcel Locker Data"));
         add(new HorizontalLayout(recipientParcelLockerComboBox, senderParcelLockerComboBox, boxStatus));
 
+        add(new H3("Test"));
     }
 
 }
