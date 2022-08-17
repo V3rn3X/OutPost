@@ -42,7 +42,7 @@ public class AddBox extends VerticalLayout {
         Div weightPrefix = new Div();
         weightPrefix.setText("Kg");
         boxWeight.setSuffixComponent(weightPrefix);
-        boxWeight.setValue("0.1");
+        boxWeight.setValue("0,1");
         boxWeight.setPattern("[0-9]{1,3}([,]{1}[0-9]{1})?");
         boxWeight.addThemeVariants(TextFieldVariant.LUMO_ALIGN_RIGHT);
         boxWeight.setHelperText("Format: 12 or 12,3");
