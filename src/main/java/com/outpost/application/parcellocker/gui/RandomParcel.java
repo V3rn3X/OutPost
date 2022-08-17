@@ -5,6 +5,9 @@ import com.outpost.application.parcellocker.ParcelLockerList;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Image;
+
+import com.vaadin.flow.component.notification.Notification;
+
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -13,6 +16,8 @@ import java.util.Random;
 
 @Route("RandomParcel")
 public class RandomParcel extends VerticalLayout {
+
+    int h = 1;
 
     public RandomParcel(ParcelLockerList parcelLockerList) {
 
@@ -34,13 +39,21 @@ public class RandomParcel extends VerticalLayout {
             int n = rand.nextInt(6);
             int m = rand.nextInt(8);
             int o = rand.nextInt(100);
+
+
                     ParcelLocker parcelLocker1 = new ParcelLocker();
-                    parcelLocker1.setID(n + m + " ");
-                    parcelLocker1.setName("Testowy" + o);
+                    parcelLocker1.setID("XYZ00" + h++);
+                    parcelLocker1.setName(city[n] + "testowy");
+
                     parcelLocker1.setStreet(street[m]);
                     parcelLocker1.setCity(city[n]);
                     parcelLocker1.setZipcode(zipcode[n]);
                     parcelLockerList.getParcelLockers().add(parcelLocker1);
+
+
+            Notification notification = new Notification(
+                    "Add Random Parcel Locker", 3000);
+            notification.open();
 
                 }
 

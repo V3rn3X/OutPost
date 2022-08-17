@@ -25,4 +25,37 @@ public class ParcelLockerList {
     public void deleteParcelLocker(String index){
         parcelLockers.removeIf(t -> t.getName().equals(index));
     }
+
+    public static int lengthParcelLocker(List<ParcelLocker> parcelLockers){
+        return parcelLockers.size();
+    }
+
+    public static Boolean checkNameParcelLocker(String name, List<ParcelLocker> parcelLockerList){
+        for (ParcelLocker test: parcelLockerList) {
+            if (test.getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static Boolean checkIdParcelLocker(String name, List<ParcelLocker> parcelLockerList){
+        for (ParcelLocker test: parcelLockerList) {
+            if (test.getID().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+//    public ParcelLocker getById(String id){
+//        return parcelLockers.stream()
+//                .filter(parcelLocker -> parcelLocker.getID().equals(id))
+//                .findFirst()
+//                .orElseThrow();
+//    }
+
+
+
+
 }

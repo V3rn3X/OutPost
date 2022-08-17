@@ -2,6 +2,9 @@ package com.outpost.application.parcellocker.gui;
 
 import com.outpost.application.parcellocker.ParcelLocker;
 import com.outpost.application.parcellocker.ParcelLockerList;
+
+import com.vaadin.flow.component.UI;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.H2;
@@ -10,16 +13,14 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.router.Route;
 
 @Route("deleteParcelLocker")
 public class DeleteParcelLocker extends VerticalLayout {
 
-    String testowy = "test";
+    String toDelete = "";
 
     public DeleteParcelLocker(ParcelLockerList parcelLockerList) {
-
 
         Button menu = new Button("Menu");
         menu.addClickListener(e ->
@@ -28,44 +29,32 @@ public class DeleteParcelLocker extends VerticalLayout {
         );
 
         add(new HorizontalLayout((new Image("https://i.postimg.cc/rmNmhchD/Out-Post-Logo.png", "nie ma")), menu));
-        add(new H2("Add Parcel Locker"));
 
+        add(new H2("Delete Parcel Locker"));
 
-//        Select<ParcelLocker> select = new Select<>();
-//        select.setLabel("Choose Parcel to delete");
-//        select.setItemLabelGenerator(ParcelLocker::getID);
-//
-//        List<ParcelLocker> parcelLockers = parcelLockerList.getParcelLockers();
-//        select.setItems(parcelLockers);
+        Button deleteParcelLocker = new Button("Delete");
 
-
-        Button deleteParcelLocker = new Button("Delete " + testowy + " a");
-//
-//        Select<ParcelLocker> comboBox = new Select<>();
-//        comboBox.setItems(parcelLockerList.getParcelLockers());
-//        comboBox.setItemLabelGenerator(ParcelLocker::getName);
-//
-//
-//        addParcelLocker.addClickListener(event -> {
-//            parcelLockerList.deleteParcelLocker(String.valueOf(comboBox.getValue()));
-//                });
-
-        ComboBox<ParcelLocker> parcelLockerComboBox = new ComboBox<>("Nazwa", parcelLockerList.getParcelLockers());
+        ComboBox<ParcelLocker> parcelLockerComboBox = new ComboBox<>("Choose Parcel Locker", parcelLockerList.getParcelLockers());
         parcelLockerComboBox.setItems(parcelLockerList.getParcelLockers());
         parcelLockerComboBox.setItemLabelGenerator(ParcelLocker::getName);
+        parcelLockerComboBox.setPlaceholder(parcelLockerList.getParcelLockers().get(0).getName());
+        parcelLockerComboBox.setValue(parcelLockerList.getParcelLockers().get(0));
         deleteParcelLocker.addClickListener(clickEvent -> {
-            testowy = parcelLockerComboBox.getValue().getName();
-            parcelLockerList.deleteParcelLocker(testowy);
 
-            Notification notification = new Notification(
-                    testowy, 3000);
-            notification.open();
+            toDelete = parcelLockerComboBox.getValue().getName();
+            parcelLockerList.deleteParcelLocker(toDelete);
+
+            if (parcelLockerList.getParcelLockers().size() == 0) {
+                Notification notification1 = new Notification(
+                        "You are delete all Parcel Locker", 6000);
+                notification1.open();
+                menu.getUI().ifPresent(ui ->
+                        ui.navigate("hello"));
+            } else {
+                UI.getCurrent().getPage().reload();
+            }
         });
-
-
         add(parcelLockerComboBox, deleteParcelLocker);
-
-
     }
 
 }
