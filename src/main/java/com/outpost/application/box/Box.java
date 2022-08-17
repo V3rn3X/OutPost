@@ -26,6 +26,7 @@ public class Box {
     }
 
     public void setSize(BoxSize size) {
+
         this.size = size;
     }
 

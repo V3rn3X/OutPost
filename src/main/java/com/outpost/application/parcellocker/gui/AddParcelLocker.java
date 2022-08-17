@@ -9,6 +9,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+
 import com.vaadin.flow.data.binder.Validator;
 import com.vaadin.flow.data.validator.RegexpValidator;
 import com.vaadin.flow.router.Route;
@@ -34,6 +35,7 @@ public class AddParcelLocker extends VerticalLayout {
 
         add(new HorizontalLayout((new Image("https://i.postimg.cc/rmNmhchD/Out-Post-Logo.png", "nie ma")), menu));
         add(new H2("Add Parcel Locker"));
+
 
         Button verify = new Button("Check");
         Button cancel = new Button("Cancel");
@@ -96,6 +98,7 @@ public class AddParcelLocker extends VerticalLayout {
             cancel.setEnabled(false);
         });
 
+
         buttonAdd.addClickListener(clickEvent -> {
             ParcelLocker parcelLocker = new ParcelLocker();
             parcelLocker.setID(textFieldId.getValue());
@@ -109,6 +112,7 @@ public class AddParcelLocker extends VerticalLayout {
                     "Parcel Locker added", 3000);
             notification.open();
 
+
             buttonAdd.setEnabled(false);
             textFieldId.setEnabled(true);
             textFieldName.setEnabled(true);
@@ -121,6 +125,7 @@ public class AddParcelLocker extends VerticalLayout {
         add(textFieldId, textFieldName, textFieldStreet, textFieldCity, textFieldZipcode);
         add(new HorizontalLayout(buttonAdd));
         add(new HorizontalLayout(verify, cancel));
+
     }
 }
 

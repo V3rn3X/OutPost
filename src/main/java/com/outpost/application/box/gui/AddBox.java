@@ -77,4 +77,5 @@ public class AddBox extends VerticalLayout {
         add(new HorizontalLayout(recipientParcelLockerComboBox, senderParcelLockerComboBox, boxStatus));
 
     }
+
 }

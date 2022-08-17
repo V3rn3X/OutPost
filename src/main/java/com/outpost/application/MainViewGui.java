@@ -1,5 +1,6 @@
 package com.outpost.application;
 
+
 import com.outpost.application.parcellocker.ParcelLockerList;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.html.Image;
@@ -12,7 +13,9 @@ import com.vaadin.flow.router.Route;
 @Route("hello")
 public class MainViewGui extends VerticalLayout {
 
+
     public MainViewGui(ParcelLockerList parcelLockerList) {
+
 
         add(new Image("https://i.postimg.cc/rmNmhchD/Out-Post-Logo.png", "Error_1"));
 
@@ -55,6 +58,7 @@ public class MainViewGui extends VerticalLayout {
                         ui.navigate("deleteParcelLocker"))
         );
 
+
         if(parcelLockerList.getParcelLockers().size() == 0)
         {
             updateParcelLocker.setEnabled(false);
@@ -73,6 +77,7 @@ public class MainViewGui extends VerticalLayout {
                 addBox.getUI().ifPresent(ui ->
                         ui.navigate("addBox"))
         );
+
 
 
 

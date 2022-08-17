@@ -2,7 +2,9 @@ package com.outpost.application.parcellocker.gui;
 
 import com.outpost.application.parcellocker.ParcelLocker;
 import com.outpost.application.parcellocker.ParcelLockerList;
+
 import com.vaadin.flow.component.UI;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.html.H2;
@@ -10,6 +12,7 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+
 import com.vaadin.flow.router.Route;
 
 @Route("deleteParcelLocker")
@@ -26,6 +29,7 @@ public class DeleteParcelLocker extends VerticalLayout {
         );
 
         add(new HorizontalLayout((new Image("https://i.postimg.cc/rmNmhchD/Out-Post-Logo.png", "nie ma")), menu));
+
         add(new H2("Delete Parcel Locker"));
 
         Button deleteParcelLocker = new Button("Delete");
@@ -52,4 +56,5 @@ public class DeleteParcelLocker extends VerticalLayout {
         });
         add(parcelLockerComboBox, deleteParcelLocker);
     }
+
 }
