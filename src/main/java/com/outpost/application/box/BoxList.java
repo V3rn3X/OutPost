@@ -1,5 +1,6 @@
 package com.outpost.application.box;
 
+import com.outpost.application.parcellocker.ParcelLocker;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -23,8 +24,17 @@ public class BoxList {
     }
 
     public void deleteBox(String index){
-        int a = box.indexOf(index);
-        box.remove(a);
+        box.removeIf(t -> t.getId().equals(index));
     }
+
+    public static Boolean checkIdBox(String name, List<Box> boxList){
+        for (Box test: boxList) {
+            if (test.getId().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

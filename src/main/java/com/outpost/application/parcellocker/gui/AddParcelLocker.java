@@ -9,11 +9,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
-
-import com.vaadin.flow.data.binder.Validator;
-import com.vaadin.flow.data.validator.RegexpValidator;
 import com.vaadin.flow.router.Route;
-import org.atmosphere.interceptor.AtmosphereResourceStateRecovery;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.outpost.application.parcellocker.ParcelLockerList.checkIdParcelLocker;
@@ -33,7 +29,8 @@ public class AddParcelLocker extends VerticalLayout {
                         ui.navigate("hello"))
         );
 
-        add(new HorizontalLayout((new Image("https://i.postimg.cc/rmNmhchD/Out-Post-Logo.png", "nie ma")), menu));
+        add(new HorizontalLayout((new Image("https://i.postimg.cc/rmNmhchD/Out-Post-Logo.png",
+                "nie ma")), menu));
         add(new H2("Add Parcel Locker"));
 
 
@@ -64,7 +61,8 @@ public class AddParcelLocker extends VerticalLayout {
 
             if (textFieldId.isInvalid() || textFieldName.isInvalid() || textFieldStreet.isInvalid() ||
                     textFieldCity.isInvalid() || textFieldZipcode.isInvalid() || textFieldId.getValue().equals("") ||
-                    textFieldName.getValue().equals("") || textFieldCity.getValue().equals("") || textFieldStreet.getValue().equals("") ||
+                    textFieldName.getValue().equals("") || textFieldCity.getValue().equals("") ||
+                    textFieldStreet.getValue().equals("") ||
                     textFieldZipcode.getValue().equals("")){
                 Notification notification = new Notification(
                         "Wrong Data", 3000);

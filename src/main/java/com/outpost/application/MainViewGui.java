@@ -1,6 +1,7 @@
 package com.outpost.application;
 
 
+import com.outpost.application.box.BoxList;
 import com.outpost.application.parcellocker.ParcelLockerList;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.html.Image;
@@ -14,7 +15,7 @@ import com.vaadin.flow.router.Route;
 public class MainViewGui extends VerticalLayout {
 
 
-    public MainViewGui(ParcelLockerList parcelLockerList) {
+    public MainViewGui(ParcelLockerList parcelLockerList, BoxList boxList) {
 
 
         add(new Image("https://i.postimg.cc/rmNmhchD/Out-Post-Logo.png", "Error_1"));
@@ -63,9 +64,11 @@ public class MainViewGui extends VerticalLayout {
         {
             updateParcelLocker.setEnabled(false);
             deleteParcelLocker.setEnabled(false);
+            addBox.setEnabled(false);
         } else{
             updateParcelLocker.setEnabled(true);
             deleteParcelLocker.setEnabled(true);
+            addBox.setEnabled(true);
         }
 
         updateParcelLocker.addClickListener(e ->
@@ -76,6 +79,31 @@ public class MainViewGui extends VerticalLayout {
         addBox.addClickListener(e ->
                 addBox.getUI().ifPresent(ui ->
                         ui.navigate("addBox"))
+        );
+
+        if(boxList.getBox().size() == 0){
+            showAllBox.setEnabled(false);
+            deleteBox.setEnabled(false);
+            updateBox.setEnabled(false);
+        } else {
+            showAllBox.setEnabled(true);
+            deleteBox.setEnabled(true);
+            updateBox.setEnabled(true);
+        }
+
+        showAllBox.addClickListener(e ->
+                showAllBox.getUI().ifPresent(ui ->
+                        ui.navigate("showAllBox"))
+        );
+
+        deleteBox.addClickListener(e ->
+                deleteBox.getUI().ifPresent(ui ->
+                        ui.navigate("deleteBox"))
+        );
+
+        updateBox.addClickListener(e ->
+                updateBox.getUI().ifPresent(ui ->
+                        ui.navigate("updateBox"))
         );
 
 
