@@ -17,6 +17,8 @@ import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.router.Route;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static com.outpost.application.box.BoxList.checkIdBox;
+
 @Route("addBox")
 public class AddBox extends VerticalLayout {
 
@@ -91,28 +93,24 @@ public class AddBox extends VerticalLayout {
                 Notification notification = new Notification(
                         "Wrong Data", 3000);
                 notification.open();
-            }
-//            else if (checkNameParcelLocker(textFieldName.getValue(), parcelLockerList.getParcelLockers()) ||
-//                    checkIdParcelLocker(textFieldId.getValue(), parcelLockerList.getParcelLockers())) {
-//
-//                Notification notification = new Notification(
-//                        "Parcel Locker with that ID or name already exists", 3000);
-//                notification.open();
-//                }
+            } else if (checkIdBox(boxId.getValue(), boxList.getBox())) {
 
-         else {
-            boxId.setEnabled(false);
-            boxWeight.setEnabled(false);
-            boxSizeComboBox.setEnabled(false);
-            boxRecipient.setEnabled(false);
-            boxSender.setEnabled(false);
-            recipientParcelLockerComboBox.setEnabled(false);
-            senderParcelLockerComboBox.setEnabled(false);
-            addBox.setEnabled(true);
-            cancel.setEnabled(true);
-            verify.setEnabled(false);
-        }
-    });
+                Notification notification = new Notification(
+                        "Box with that ID already exists", 3000);
+                notification.open();
+            } else {
+                boxId.setEnabled(false);
+                boxWeight.setEnabled(false);
+                boxSizeComboBox.setEnabled(false);
+                boxRecipient.setEnabled(false);
+                boxSender.setEnabled(false);
+                recipientParcelLockerComboBox.setEnabled(false);
+                senderParcelLockerComboBox.setEnabled(false);
+                addBox.setEnabled(true);
+                cancel.setEnabled(true);
+                verify.setEnabled(false);
+            }
+        });
 
         cancel.addClickListener(clickEvent -> {
             boxId.setEnabled(true);
@@ -158,5 +156,5 @@ public class AddBox extends VerticalLayout {
         add(new HorizontalLayout(addBox));
         add(new HorizontalLayout(verify, cancel));
 
-}
+    }
 }

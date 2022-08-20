@@ -18,10 +18,7 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.TextFieldVariant;
 import com.vaadin.flow.router.Route;
 
-import static com.outpost.application.box.BoxList.checkIdBox;
 import static com.outpost.application.box.EditBox.getBoxEdit;
-import static com.outpost.application.parcellocker.EditParcelLocker.getParcelLockerEdit;
-import static com.outpost.application.parcellocker.ParcelLockerList.checkNameParcelLocker;
 
 @Route("updateBox2")
 public class UpdateBoxII extends VerticalLayout {
@@ -29,19 +26,13 @@ public class UpdateBoxII extends VerticalLayout {
     public UpdateBoxII(BoxList boxList, ParcelLockerList parcelLockerList) {
 
         Button menu = new Button("Menu");
-        menu.addClickListener(e ->
-                menu.getUI().ifPresent(ui ->
-                        ui.navigate("hello"))
-        );
+        menu.addClickListener(e -> menu.getUI().ifPresent(ui -> ui.navigate("hello")));
 
         add(new HorizontalLayout((new Image("https://i.postimg.cc/rmNmhchD/Out-Post-Logo.png", "nie ma")), menu));
         add(new H2("Update Box"));
 
         Button cancel = new Button("Cancel");
-        cancel.addClickListener(e ->
-                cancel.getUI().ifPresent(ui ->
-                        ui.navigate("updateBox"))
-        );
+        cancel.addClickListener(e -> cancel.getUI().ifPresent(ui -> ui.navigate("updateBox")));
 
         Button save = new Button("Save");
         String temporary = getBoxEdit().getId();
@@ -93,33 +84,23 @@ public class UpdateBoxII extends VerticalLayout {
 
         save.addClickListener(e -> {
 
-            if (boxId.isInvalid() || boxWeight.isInvalid() || boxRecipient.isInvalid() ||
-                    boxSender.isInvalid() || boxId.getValue().equals("") ||
-                    boxWeight.getValue().equals("") || boxRecipient.getValue().equals("") || boxSender.getValue().equals("")) {
-                Notification notification = new Notification(
-                        "Wrong Data", 3000);
+            if (boxId.isInvalid() || boxWeight.isInvalid() || boxRecipient.isInvalid() || boxSender.isInvalid() || boxId.getValue().equals("") || boxWeight.getValue().equals("") || boxRecipient.getValue().equals("") || boxSender.getValue().equals("")) {
+                Notification notification = new Notification("Wrong Data", 3000);
                 notification.open();
-
-            } else if (checkIdBox(boxId.getValue(), boxList.getBox())) {
-
-                Notification notification = new Notification(
-                        "Parcel Locker with that ID or name already exists", 3000);
-                notification.open();
-
             } else {
-
-
-                for(Box box : boxList.getBox()){
-                    if(box.)
+                for (Box box : boxList.getBox()) {
+                    if (box.getId().equals(temporary)) {
+                        box.setSize(boxSizeComboBox.getValue());
+                        box.setWeight(boxWeight.getValue());
+                        box.setRecipient(boxRecipient.getValue());
+                        box.setSender(boxSender.getValue());
+                        box.setRecipientParcel(recipientParcelLockerComboBox.getValue());
+                        box.setSenderParcel(senderParcelLockerComboBox.getValue());
+                    }
                 }
-
-
-
-
-
+                save.getUI().ifPresent(ui -> ui.navigate("updateBox"));
             }
-
         });
-
+        add(new HorizontalLayout(cancel, save));
     }
 }

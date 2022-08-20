@@ -29,6 +29,7 @@ public class MainViewGui extends VerticalLayout {
         Button showAllBox = new Button("Show All Box");
         Button updateBox = new Button("Update Box");
         Button randomParcelLocker = new Button("Random Parcel Locker");
+        Button loginConsole = new Button("Login");
 
         add(new H2("Menu Parcel Locker"));
         add(new HorizontalLayout(addParcelLocker, deleteParcelLocker, showAllParcelLocker, updateParcelLocker));
@@ -36,8 +37,8 @@ public class MainViewGui extends VerticalLayout {
         add(new H2("Menu Box"));
         add(new HorizontalLayout(addBox, deleteBox, showAllBox, updateBox));
 
-        add(new H2("Random Parcel Locker"));
-        add(new HorizontalLayout(randomParcelLocker));
+        add(new H2("Admin Panel"));
+        add(new HorizontalLayout(randomParcelLocker, loginConsole));
 
         addParcelLocker.addClickListener(e ->
                 addParcelLocker.getUI().ifPresent(ui ->
@@ -104,6 +105,11 @@ public class MainViewGui extends VerticalLayout {
         updateBox.addClickListener(e ->
                 updateBox.getUI().ifPresent(ui ->
                         ui.navigate("updateBox"))
+        );
+
+        loginConsole.addClickListener(e ->
+                loginConsole.getUI().ifPresent(ui ->
+                        ui.navigate("loginPanel"))
         );
 
 
